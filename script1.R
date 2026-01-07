@@ -68,8 +68,11 @@ tot <- tot %>%
   filter(there(x) >= 25)
 a <- ggplot(tot, aes(x = x, y = y, colour = clr2, group = dataset)) +
   geom_line(linewidth = 1.5) +
-  scale_color_gradient2(midpoint = 0, low = "blue", high = "orange",
-                        guide = NULL) +
+  scale_color_gradient2("",
+                        midpoint = 0, low = "blue", high = "orange",
+                        # guide = NULL,
+                        breaks = c(-1.5, 0, 1.5),   # Define where labels go
+                        labels = c("Beneficial", "Null", "Harmful")) +
   theme_minimal() +
   theme(panel.grid = element_blank()) +
   # facet_wrap(~type, ncol = 1) +
