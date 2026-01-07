@@ -60,6 +60,12 @@ obs <- mydf %>%
 
 tot <- bind_rows(fivetrials,
                  obs) 
+
+## converting between scales for plots
+there <- function(x) x*10 + 40
+back <- function(x) (x-40) / 10
+tot <- tot %>% 
+  filter(there(x) >= 25)
 a <- ggplot(tot, aes(x = x, y = y, colour = clr2, group = dataset)) +
   geom_line(linewidth = 1.5) +
   scale_color_gradient2(midpoint = 0, low = "blue", high = "orange",
@@ -68,7 +74,7 @@ a <- ggplot(tot, aes(x = x, y = y, colour = clr2, group = dataset)) +
   theme(panel.grid = element_blank()) +
   # facet_wrap(~type, ncol = 1) +
   scale_y_continuous("Participants/patients", labels = function(x) round(10000*x)) +
-  scale_x_continuous("Age (years)", labels = function(x) x*10 + 40) 
+  scale_x_continuous("Age (years)", labels = there) 
 a
 png("quickplot.png")
 a
