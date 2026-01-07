@@ -37,10 +37,11 @@ a
 #   mutate(x = x + 1,
 #          y = y * 0.5,
 #          clr2 = MyInter(x))
+
 fivetrials <- pmap(list(
-  c(0, 0.2, 0.5, 0.75, 1),
+  c(0, 0.2, 0.5, 0.75, 6),
   c(0.2, 0.25, 0.4, 0.3, 0.5),
-  c(1, 1, 1, 1, 1)), function(xs, ys, ss) {
+  c(1, 1, 1, 1, 0.3)), function(xs, ys, ss) {
                      mydf %>% 
                        mutate(x = x + xs,
                               y = y * ys,
