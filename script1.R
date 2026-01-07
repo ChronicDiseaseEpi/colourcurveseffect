@@ -41,12 +41,13 @@ a
 fivetrials <- pmap(list(
   c(0, 0.2, 0.5, 0.75, 6),
   c(0.2, 0.25, 0.4, 0.3, 0.5),
-  c(0.8, 0.8, 0.8, 0.8, 0.3)), function(xs, ys, ss) {
+  c(0.8, 0.8, 0.8, 0.8, 0.3),
+  c(0.5, 0.5, 0.5, 0.5, 0.4)), function(xs, ys, ss, nt) {
                      mydf %>% 
                        mutate(x = x + xs,
                               y = y * ys,
                               x = x*ss,
-                              clr2 = MyInter(x, 0.5))
+                              clr2 = MyInter(x, nt))
                    })
 
 names(fivetrials) <- seq_along(fivetrials)
